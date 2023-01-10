@@ -1,0 +1,22 @@
+from twitchio.ext import commands
+
+
+class Bot(commands.Bot):
+
+    def __init__(self):
+        super().__init__(token='TOKEN', prefix='PREFIX', initial_channels=['CHANNEL'])
+
+    async def event_ready(self):
+        print(f'Logged in as | {self.nick}')
+
+    @commands.command()
+    async def horario(self, ctx: commands.Context):
+        await ctx.send(f'Patatas {ctx.author.name}')
+        
+    @commands.command()
+    async def patatas(self, ctx: commands.Context):
+        await ctx.send(f'lechugas con patatas :0')
+
+
+bot = Bot()
+bot.run()
