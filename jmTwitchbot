@@ -1,5 +1,7 @@
 from twitchio.ext import commands
+import random
 
+dado = '1', '2', '3', '4', '5',
 
 class Bot(commands.Bot):
 
@@ -16,6 +18,10 @@ class Bot(commands.Bot):
     @commands.command()
     async def patatas(self, ctx: commands.Context):
         await ctx.send(f'lechugas con patatas :0')
+
+    @commands.command()
+    async def dado(self, ctx: commands.Context):
+        await ctx.send(f'{ctx.author.name} ha tirado un dado de 5 caras y este es el numero que ha salido: {random.choice(dado)}')
 
 
 bot = Bot()
