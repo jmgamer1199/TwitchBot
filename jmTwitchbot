@@ -38,6 +38,7 @@ respuesta = [
 class Bot(commands.Bot):
 
     def __init__(self):
+        #en esta parte en "TOKEN" debes de ir a la pagina web " https://twitchtokengenerator.com/ " con la cuenta del bot iniciada y copiar el ACCES TOKEN y ponerlo en el token, en el "PREFIX" puedes asignar el prefijo que quieras y por ultimo en "CHANNEL" debes de añadir el canal que deseas añadir el bot
         super().__init__(token='TOKEN', prefix='PREFIX', initial_channels=['CHANNEL'])
 
     async def event_ready(self):
