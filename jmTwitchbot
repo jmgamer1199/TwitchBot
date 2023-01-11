@@ -1,6 +1,10 @@
+#importamos la libreria de twitchio ejecutando este comando en la terminal: pip install twitchio
 from twitchio.ext import commands
+
+#Esta libreria ya viene al instalar python asi que no hara falta instalarla
 import random
 
+#definimos las variables dado, poema y respuesta con sus opciones
 dado = ['1', '2', '3', '4', '5']
 
 poema = [
@@ -39,6 +43,7 @@ class Bot(commands.Bot):
     async def event_ready(self):
         print(f'Logged in as | {self.nick}')
 
+#creamos los comandos que queramos
     @commands.command()
     async def comandos(self, ctx: commands.Context):
         await ctx.send(f'Los comandos disponibles son estos: *horario* Este comando actualmente no tiene ninguna funcionalidad, *dado* Lanza un dado dandote un numero aleatorio del 1 al 5, *poema* Este comando te dara un poema de @dalia_385, *bola8* Preguntale cualquier cosa a la bola 8 y ella te respondera')
@@ -63,6 +68,6 @@ class Bot(commands.Bot):
     async def bola8(self, ctx: commands.Context):
      await ctx.send(f'{random.choice(respuesta)}')
 
-
+#encendemos el bot
 bot = Bot()
 bot.run()
