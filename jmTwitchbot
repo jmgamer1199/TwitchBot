@@ -1,7 +1,35 @@
 from twitchio.ext import commands
 import random
 
-dado = '1', '2', '3', '4', '5',
+dado = ['1', '2', '3', '4', '5']
+
+poema = [
+'poema 1',
+'poema 2'
+]
+
+respuesta = [
+'Es cierto.', 
+'Es decididamente así.', 
+'Sin lugar a dudas.', 
+'Sí, definitivamente.', 
+'Puedes confiar en ello', 
+'Como yo lo veo, sí.', 
+'Lo más probable.', 
+'Perspectiva buena.', 
+'Sí.', 
+'Las señales apuntan a que sí.', 
+'Respuesta confusa, vuelve a intentarlo.', 
+'Vuelve a preguntar más tarde.', 
+'Mejor no decirte ahora.', 
+'No se puede predecir ahora.', 
+'Concéntrate y vuelve a preguntar.', 
+'No cuentes con ello.', 
+'Mi respuesta es no.', 
+'Mis fuentes dicen que no.', 
+'Las perspectivas no son muy buenas.', 
+'Muy dudoso.'
+]
 
 class Bot(commands.Bot):
 
@@ -10,6 +38,10 @@ class Bot(commands.Bot):
 
     async def event_ready(self):
         print(f'Logged in as | {self.nick}')
+
+    @commands.command()
+    async def comandos(self, ctx: commands.Context):
+        await ctx.send(f'Los comandos disponibles son estos: *horario* Este comando actualmente no tiene ninguna funcionalidad, *dado* Lanza un dado dandote un numero aleatorio del 1 al 5, *poema* Este comando te dara un poema de @dalia_385, *bola8* Preguntale cualquier cosa a la bola 8 y ella te respondera')
 
     @commands.command()
     async def horario(self, ctx: commands.Context):
@@ -22,6 +54,14 @@ class Bot(commands.Bot):
     @commands.command()
     async def dado(self, ctx: commands.Context):
         await ctx.send(f'{ctx.author.name} ha tirado un dado de 5 caras y este es el numero que ha salido: {random.choice(dado)}')
+
+    @commands.command()
+    async def poema(self, ctx: commands.Context):
+        await ctx.send(f'{random.choice(poema)}')
+
+    @commands.command()
+    async def bola8(self, ctx: commands.Context):
+     await ctx.send(f'{random.choice(respuesta)}')
 
 
 bot = Bot()
