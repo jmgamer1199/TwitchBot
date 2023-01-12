@@ -35,6 +35,8 @@ respuesta = [
 'Muy dudoso.'
 ]
 
+votos = {'si': 0, 'no': 0}
+
 class Bot(commands.Bot):
 
     def __init__(self):
@@ -68,6 +70,21 @@ class Bot(commands.Bot):
     @commands.command()
     async def bola8(self, ctx: commands.Context):
      await ctx.send(f'{random.choice(respuesta)}')
+
+    @commands.command()
+    async def votar(self, ctx: commands.Context):
+        global votos
+        if "si" in ctx.message.raw_data:
+            votos['si'] = votos['si'] + 1
+            await ctx.send(f'Tu voto "Si" se ha contado')
+        elif "no" in ctx.message.raw_data:
+            votos['no'] = votos['no'] + 1
+            await ctx.send(f'Tu voto "No" se ha contado')
+        else:
+            await ctx.send(f'Debes de votar entre Si o N0 en minuscula')
+
+        if votos['si'] + votos['no'] >= 5:
+            await ctx.send(f'Resultados de la votacion: Votos a Si:{votos["si"]} / Votos a No:{votos["no"]}')
 
 #encendemos el bot
 bot = Bot()
