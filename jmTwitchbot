@@ -38,6 +38,10 @@ respuesta = [
 
 votos = {'si': 0, 'no': 0}
 
+version = '0.0.1'
+
+desarrollador = 'jmgamer1199'
+
 class Bot(commands.Bot):
 
     def __init__(self):
@@ -46,6 +50,23 @@ class Bot(commands.Bot):
 
     async def event_ready(self):
         print(f'Logged in as | {self.nick}')
+        print(f'User id is | {self.user_id}')
+        print(f'Connected to | {self.connected_channels}')
+        print(f'Prefix | {self._prefix}')
+        print(f'Version | {version}')
+        
+    async def event_message(self, message):
+        # Messages with echo set to True are messages sent by the bot...
+        # For now we just want to ignore them...
+        if message.echo:
+            return
+
+        # Print the contents of our message to console...
+        print(message.content)
+
+        # Since we have commands and are overriding the default `event_message`
+        # We must let the bot know we want to handle and invoke our commands...
+        await self.handle_commands(message)
 
 #creamos los comandos que queramos
     @commands.command()
@@ -90,6 +111,11 @@ class Bot(commands.Bot):
     @commands.command()
     async def redes(self, ctx: commands.Context):
         await ctx.send(f'Twitter: https:\\ Youtube: https:\\ TikTok: https:\\')
+
+    @commands.command()
+    async def infobot(self, ctx: commands.Context):
+        await ctx.send(f'Nombre: {self.nick}, Version: {version}, Prefijo: {self._prefix}, Programador: {desarrollador}')
+
 #encendemos el bot
 bot = Bot()
 bot.run()
