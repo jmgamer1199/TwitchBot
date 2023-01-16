@@ -8,8 +8,9 @@ import random
 dado = ['1', '2', '3', '4', '5']
 
 poema = [
-'poema 1',
-'poema 2'
+'las rosas son rojas el viento las mueve tu eres el 6 y yo el 9',
+'No es verdad ángel de amor que esta apartada orilla mas pura la luna brilla y se respira mejor',
+'No es la lluvia, Ni es el sol, Son tus ojos que me enamoran Sin que les de siquiera un rayo de sol',
 ]
 
 respuesta = [
@@ -86,6 +87,9 @@ class Bot(commands.Bot):
         if votos['si'] + votos['no'] >= 5:
             await ctx.send(f'Resultados de la votacion: Votos a Si:{votos["si"]} / Votos a No:{votos["no"]}')
 
+    @commands.command()
+    async def redes(self, ctx: commands.Context):
+        await ctx.send(f'Twitter: https:\\ Youtube: https:\\ TikTok: https:\\')
 #encendemos el bot
 bot = Bot()
 bot.run()
